@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import RatingSheet from './components/RatingSheet'
+import { Washroom } from './types'
 
 // Both Map and AddWashroomSheet use Leaflet — must be browser-only (ssr: false)
 const Map              = dynamic(() => import('./components/Map'),              { ssr: false })
@@ -13,7 +14,7 @@ const WHATSAPP_NUMBER = '919876543210'
 
 // ── Hardcoded washroom data for NH48 ──────────────────────────────────────
 // Source: approximate real locations. Replaced with Supabase in a later step.
-const WASHROOMS = [
+const WASHROOMS: Washroom[] = [
   {
     id: '1',
     name: 'Kherki Daula Toll Plaza',
@@ -94,7 +95,7 @@ const COLOR: Record<string, string> = {
   good: '#1E7C34', okay: '#B87800', bad: '#C0392B',
 }
 
-type Washroom = (typeof WASHROOMS)[0]
+// Washroom type is imported from ./types
 type View = 'splash' | 'location' | 'map'
 
 // ── SafeStop logomark (inline SVG — no image file needed) ─────────────────
