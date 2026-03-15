@@ -23,8 +23,8 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font);
-  overscroll-behavior: none; /* prevent pull-to-refresh on mobile */
-  -webkit-tap-highlight-color: transparent; /* remove tap flash on iOS */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ── Leaflet overrides ────────────────────────── */
@@ -37,45 +37,156 @@ body {
 .leaflet-top,
 .leaflet-bottom      { z-index: 2; }
 
-/* ── Animations ───────────────────────────────── */
+/* ── Splash ───────────────────────────────────── */
+/* Logo bounces in from below with spring feel */
+@keyframes splashLogoIn {
+  0%   { opacity: 0; transform: translateY(24px) scale(0.85); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.04); }
+  80%  { transform: translateY(2px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-/* Splash logo entrance */
-@keyframes splashIn {
+/* Tagline fades up slightly after logo */
+@keyframes splashTaglineIn {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle background radial glow pulses on splash */
+@keyframes splashGlow {
+  0%   { opacity: 0.4; transform: scale(1); }
+  50%  { opacity: 0.7; transform: scale(1.08); }
+  100% { opacity: 0.4; transform: scale(1); }
+}
+
+.splash-logo {
+  animation: splashLogoIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.splash-tagline {
+  animation: splashTaglineIn 0.5s ease forwards;
+  animation-delay: 0.35s;
+  opacity: 0;
+}
+
+.splash-glow {
+  animation: splashGlow 2.5s ease-in-out infinite;
+}
+
+/* ── Screen transitions ───────────────────────── */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.screen-fade {
+  animation: fadeSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ── Detail card & sheets ─────────────────────── */
+/* Spring-physics slide up — feels physical, not robotic */
+@keyframes slideUp {
+  0%   { transform: translateY(100%); }
+  65%  { transform: translateY(-6px); }
+  82%  { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}
+
+.detail-card {
+  animation: slideUp 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* ── Map pins ─────────────────────────────────── */
+/* Pulse ring on recently-rated pins — shows live activity */
+@keyframes pinPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.pin-pulse-ring {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pinPulse 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+/* ── Filter pill ──────────────────────────────── */
+@keyframes pillActivate {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.93); }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pill-pop {
+  animation: pillActivate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── Rating buttons ───────────────────────────── */
+/* Bounces when selected */
+@keyframes ratingSelect {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.9); }
+  70%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.rating-selected {
+  animation: ratingSelect 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── Thank you celebration ────────────────────── */
+@keyframes thankYouBounce {
+  0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(5deg);  opacity: 1; }
+  80%  { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes thankYouTextIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Detail card slides up from below */
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+.thank-you-emoji {
+  display: inline-block;
+  animation: thankYouBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Location screen fades in */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.thank-you-text {
+  animation: thankYouTextIn 0.4s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
 }
 
-/* Filter pill active pulse */
-@keyframes pillPop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.06); }
-  100% { transform: scale(1); }
+/* ── Shimmer on card load ─────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
-.splash-content {
-  animation: splashIn 0.5s ease forwards;
+.shimmer-line {
+  background: linear-gradient(
+    90deg,
+    rgba(181,68,0,0.06) 25%,
+    rgba(181,68,0,0.12) 50%,
+    rgba(181,68,0,0.06) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: 6px;
 }
 
-.detail-card {
-  animation: slideUp 0.32s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+/* ── FAB button ───────────────────────────────── */
+@keyframes fabIn {
+  from { transform: scale(0) rotate(-45deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg);   opacity: 1; }
 }
 
-.screen-fade {
-  animation: fadeIn 0.3s ease forwards;
-}
-
-.pill-pop {
-  animation: pillPop 0.2s ease forwards;
+.fab-enter {
+  animation: fabIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }

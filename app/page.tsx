@@ -212,18 +212,30 @@ export default function Home() {
         background: '#FFFBF5',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        gap: '14px',
+        gap: '14px', overflow: 'hidden', position: 'relative',
       }}>
-        <div className="splash-content" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-          <LogoMark size={56} />
-          <h1 style={{
-            fontSize: '32px', fontWeight: '700',
+        {/* Ambient glow behind logo */}
+        <div className="splash-glow" style={{
+          position: 'absolute',
+          width: '260px', height: '260px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(181,68,0,0.12) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px', zIndex: 1 }}>
+          <div className="splash-logo">
+            <LogoMark size={64} />
+          </div>
+          <h1 className="splash-logo" style={{
+            fontSize: '34px', fontWeight: '700',
             color: '#B54400', letterSpacing: '-0.5px',
             fontFamily: 'var(--font-poppins), sans-serif',
+            animationDelay: '0.1s',
           }}>
             SafeStop
           </h1>
-          <p style={{
+          <p className="splash-tagline" style={{
             fontSize: '15px', fontWeight: '500',
             color: '#5C3D1E', letterSpacing: '0.2px',
             fontFamily: 'var(--font-poppins), sans-serif',
@@ -562,6 +574,7 @@ export default function Home() {
         <button
           onClick={() => setShowAddWashroom(true)}
           aria-label="Add a washroom"
+          className="fab-enter"
           style={{
             position: 'absolute', bottom: '90px', right: '20px',
             zIndex: 1000,
@@ -574,6 +587,15 @@ export default function Home() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: '26px', color: '#FFFBF5',
             fontWeight: '300',
+            transition: 'transform 0.15s, box-shadow 0.15s',
+          }}
+          onTouchStart={e => {
+            e.currentTarget.style.transform = 'scale(0.92)'
+            e.currentTarget.style.boxShadow = '0 2px 10px rgba(181,68,0,0.25)'
+          }}
+          onTouchEnd={e => {
+            e.currentTarget.style.transform = 'scale(1)'
+            e.currentTarget.style.boxShadow = '0 4px 20px rgba(181,68,0,0.35)'
           }}
         >
           +

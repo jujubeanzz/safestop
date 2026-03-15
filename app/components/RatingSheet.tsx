@@ -219,11 +219,11 @@ export default function RatingSheet({ washroomName, onClose }: Props) {
       {/* ── Step 3: Thank you ───────────────────── */}
       {step === 'thanks' && (
         <div style={{ textAlign: 'center', paddingTop: '8px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '12px' }}>🙏</div>
-          <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#1A0E05', marginBottom: '8px' }}>
+          <div className="thank-you-emoji" style={{ fontSize: '48px', marginBottom: '12px' }}>🙏</div>
+          <h2 className="thank-you-text" style={{ fontSize: '22px', fontWeight: '700', color: '#1A0E05', marginBottom: '8px' }}>
             Thank you!
           </h2>
-          <p style={{ fontSize: '14px', color: '#5C3D1E', lineHeight: '1.6', marginBottom: '28px', maxWidth: '260px', margin: '0 auto 28px' }}>
+          <p className="thank-you-text" style={{ fontSize: '14px', color: '#5C3D1E', lineHeight: '1.6', marginBottom: '28px', maxWidth: '260px', margin: '0 auto 28px', animationDelay: '0.4s' }}>
             Your rating helps fellow travelers on this route find clean stops.
           </p>
 
