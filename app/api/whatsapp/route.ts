@@ -68,8 +68,10 @@ function findCoords(location: string): [number, number] | null {
 
 // ── Build a TwiML XML response (this is what Twilio expects) ──────────────
 // TwiML = Twilio Markup Language — it's just XML that tells Twilio what to reply
+// We must escape & < > in the message — raw & in XML breaks the response silently
 function twiml(message: string): NextResponse {
-  const xml = `<?xml version="1.0" encoding="UTF-8"?><Response><Message>${message}</Message></Response>`
+  const safe = message.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const xml = `<?xml version="1.0" encoding="UTF-8"?><Response><Message>${safe}</Message></Response>`
   return new NextResponse(xml, {
     headers: { 'Content-Type': 'text/xml' },
   })
