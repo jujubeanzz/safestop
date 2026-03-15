@@ -11,6 +11,11 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
+// GET handler — lets us confirm the route is live by visiting it in a browser
+export async function GET() {
+  return NextResponse.json({ status: 'SafeStop WhatsApp bot is running' })
+}
+
 // ── Known towns on NH48 Delhi–Jaipur with their coordinates ──────────────
 // Keeps the bot fast — no geocoding API needed for the most common queries.
 const NH48_TOWNS: Record<string, [number, number]> = {
