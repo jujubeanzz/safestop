@@ -62,7 +62,7 @@ const CLEANLINESS_OPTIONS = [
   { value: 'bad'   as CleanlinessValue, emoji: '👎', label: 'Avoid',  color: '#C0392B', bg: '#C0392B12' },
 ]
 
-const AMENITIES = [
+const AMENITIES: { key: 'water' | 'space' | 'bin'; emoji: string; label: string }[] = [
   { key: 'water', emoji: '💧', label: 'Running water' },
   { key: 'space', emoji: '🪣', label: 'Clean space to change' },
   { key: 'bin',   emoji: '🗑️', label: 'Disposal bin' },
