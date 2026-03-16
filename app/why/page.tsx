@@ -242,7 +242,7 @@ export default function WhyPage() {
             boxShadow: '0 4px 20px rgba(181,68,0,0.35)',
           }}
         >
-          Open the map
+          Find clean washrooms →
         </Link>
       </div>
 
