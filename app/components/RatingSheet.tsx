@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { supabase } from '../../lib/supabase'
 
 type CleanlinessValue = 'good' | 'okay' | 'bad'
 type Step = 'cleanliness' | 'amenities' | 'thanks'
 
 type Props = {
+  washroomId: string
   washroomName: string
   onClose: () => void
 }
@@ -31,7 +33,7 @@ const AMENITIES = [
   { key: 'bin',   emoji: '🗑️', label: 'Disposal bin' },
 ]
 
-export default function RatingSheet({ washroomName, onClose }: Props) {
+export default function RatingSheet({ washroomId, washroomName, onClose }: Props) {
   const [step, setStep]             = useState<Step>('cleanliness')
   const [cleanliness, setCleanliness] = useState<CleanlinessValue | null>(null)
   const [amenities, setAmenities]   = useState({ water: false, space: false, bin: false })
@@ -45,8 +47,24 @@ export default function RatingSheet({ washroomName, onClose }: Props) {
     setAmenities(prev => ({ ...prev, [key]: !prev[key] }))
   }
 
-  const handleSubmit = () => {
-    // Supabase write will go here in a later step
+  const handleSubmit = async () => {
+    if (!cleanliness) return
+    // Save rating to Supabase
+    await supabase.from('ratings').insert({
+      washroom_id:       washroomId,
+      cleanliness,
+      has_running_water: amenities.water,
+      has_clean_space:   amenities.space,
+      has_disposal_bin:  amenities.bin,
+    })
+    // Update the washroom's cleanliness snapshot
+    await supabase.from('washrooms').update({
+      cleanliness,
+      has_running_water: amenities.water,
+      has_clean_space:   amenities.space,
+      has_disposal_bin:  amenities.bin,
+      last_rated:        new Date().toISOString(),
+    }).eq('id', washroomId)
     setStep('thanks')
   }
 

@@ -2,8 +2,10 @@
 
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import RatingSheet from './components/RatingSheet'
 import { Washroom } from './types'
+import { supabase } from '../lib/supabase'
 
 // Both Map and AddWashroomSheet use Leaflet — must be browser-only (ssr: false)
 const Map              = dynamic(() => import('./components/Map'),              { ssr: false })
@@ -141,6 +143,14 @@ export default function Home() {
   const [targetLocation, setTargetLocation]   = useState<[number, number] | null>(null)
   const [targetZoom, setTargetZoom]           = useState(8)
   const [localWashrooms, setLocalWashrooms]   = useState<Washroom[]>([])
+  const [dbWashrooms, setDbWashrooms]         = useState<Washroom[]>([])
+
+  // Load washrooms from Supabase on mount
+  useEffect(() => {
+    supabase.from('washrooms').select('*').then(({ data }) => {
+      if (data && data.length > 0) setDbWashrooms(data as Washroom[])
+    })
+  }, [])
 
   // Auto-advance splash after 1.8 seconds
   useEffect(() => {
@@ -178,8 +188,9 @@ export default function Home() {
   // Toggle menstrual filter — only show washrooms with disposal bin + clean space
   const toggleFilter = () => setMenstrualFilter(v => !v)
 
-  // Merge hardcoded seed data with any washrooms added by this user session
-  const allWashrooms = [...WASHROOMS, ...localWashrooms]
+  // Use DB data if loaded, otherwise fall back to hardcoded seed data
+  const baseWashrooms = dbWashrooms.length > 0 ? dbWashrooms : WASHROOMS
+  const allWashrooms = [...baseWashrooms, ...localWashrooms]
 
   const displayedWashrooms = menstrualFilter
     ? allWashrooms.filter(w => w.has_disposal_bin && w.has_clean_space)
@@ -350,7 +361,19 @@ export default function Home() {
         <h1 style={{ fontSize: '20px', fontWeight: '700', color: '#B54400', letterSpacing: '-0.3px', flex: 1 }}>
           SafeStop
         </h1>
-
+        <Link
+          href="/why"
+          style={{
+            fontSize: '12px', fontWeight: '600', color: '#5C3D1E',
+            textDecoration: 'none',
+            padding: '6px 12px',
+            borderRadius: '100px',
+            background: 'rgba(92,61,30,0.08)',
+            border: '1px solid rgba(92,61,30,0.15)',
+          }}
+        >
+          Why SafeStop?
+        </Link>
       </header>
 
       {/* ── Filter pill ─────────────────────────────── */}
@@ -564,6 +587,7 @@ export default function Home() {
       {/* ── Rating sheet ─────────────────────────────── */}
       {selected && showRating && (
         <RatingSheet
+          washroomId={selected.id}
           washroomName={selected.name}
           onClose={() => { setShowRating(false); setSelected(null) }}
         />
