@@ -29,15 +29,18 @@ export default function WhyPage() {
           width: '240px', height: '240px', borderRadius: '50%',
           background: 'rgba(255,251,245,0.06)', pointerEvents: 'none',
         }} />
-        <div style={{ marginBottom: '14px' }}>
-          <svg width="44" height="44" viewBox="0 0 52 52" fill="none">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '10px' }}>
+          <svg width="36" height="36" viewBox="0 0 52 52" fill="none">
             <path d="M26 3C14.402 3 5 12.402 5 24c0 16 21 25 21 25s21-9 21-25C47 12.402 37.598 3 26 3z" fill="#FFFBF5" opacity="0.9"/>
             <circle cx="26" cy="23" r="8" fill="#B54400"/>
           </svg>
+          <h1 style={{ fontSize: '26px', fontWeight: '700', color: '#FFFBF5', lineHeight: '1.3', margin: 0, textAlign: 'left' }}>
+            SafeStop
+          </h1>
         </div>
-        <h1 style={{ fontSize: '26px', fontWeight: '700', color: '#FFFBF5', lineHeight: '1.3', marginBottom: '10px' }}>
+        <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#FFFBF5', lineHeight: '1.3', marginBottom: '10px' }}>
           Every highway has washrooms.<br/>Most are unusable.
-        </h1>
+        </h2>
         <p style={{ fontSize: '14px', color: 'rgba(255,251,245,0.78)', lineHeight: '1.6', maxWidth: '300px', margin: '0 auto' }}>
           SafeStop is a free community map so you always know what&apos;s ahead.
         </p>
@@ -177,10 +180,10 @@ export default function WhyPage() {
       }}>
         <div style={{ fontSize: '32px', marginBottom: '12px' }}>🛣️</div>
         <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#FFFBF5', marginBottom: '10px', lineHeight: '1.4' }}>
-          Starting with NH48.<br/>Built for every highway in India.
+          Built for every highway in India.
         </h3>
         <p style={{ fontSize: '13px', color: 'rgba(255,251,245,0.78)', lineHeight: '1.7' }}>
-          The same model — WhatsApp bot, community ratings, open map — works on any route. As more travellers contribute, the map grows.
+          WhatsApp bot, community ratings, open map — the same model works on any route. As more travellers contribute, the map grows across the country.
         </p>
       </section>
 
@@ -188,7 +191,7 @@ export default function WhyPage() {
       <div style={{
         position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)',
         width: '100%', maxWidth: '390px',
-        padding: '16px 24px 32px',
+        padding: '12px 24px 20px',
         background: 'linear-gradient(to top, #FFFBF5 70%, rgba(255,251,245,0))',
         zIndex: 100,
       }}>
