@@ -40,10 +40,10 @@ export default function WhyPage() {
         </div>
 
         <h1 style={{ fontSize: '26px', fontWeight: '700', color: '#FFFBF5', lineHeight: '1.3', marginBottom: '10px' }}>
-          We built SafeStop because nobody should have to dehydrate before a road trip.
+          What is SafeStop?
         </h1>
-        <p style={{ fontSize: '14px', color: 'rgba(255,251,245,0.80)', lineHeight: '1.6', maxWidth: '300px', margin: '0 auto' }}>
-          A free, community-built map of clean washrooms on Indian highways — so you always know before you stop.
+        <p style={{ fontSize: '15px', color: 'rgba(255,251,245,0.88)', lineHeight: '1.7', maxWidth: '300px', margin: '0 auto' }}>
+          A free, community-built map of clean washrooms on Indian highways. Rate what you find. Help everyone behind you.
         </p>
       </section>
 
