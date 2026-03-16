@@ -20,11 +20,44 @@
 }
 
 body {
-  background: var(--bg);
+  background: #1A0E05;
   color: var(--text-primary);
   font-family: var(--font);
   overscroll-behavior: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Mobile-only shell ────────────────────────── */
+/* On mobile: full screen. On desktop: phone frame centered on dark bg. */
+.app-shell {
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (min-width: 500px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100dvh;
+    background: #1A0E05;
+    /* Subtle warm texture on the desktop background */
+    background-image: radial-gradient(ellipse at 30% 40%, rgba(181,68,0,0.08) 0%, transparent 60%),
+                      radial-gradient(ellipse at 70% 80%, rgba(181,68,0,0.05) 0%, transparent 50%);
+  }
+
+  .app-shell {
+    width: 390px;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 32px 80px rgba(0,0,0,0.6);
+  }
 }
 
 /* ── Leaflet overrides ────────────────────────── */
