@@ -22,7 +22,6 @@ export default function WhyPage() {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Ambient circle */}
         <div style={{
           position: 'absolute', top: '-60px', left: '50%',
           transform: 'translateX(-50%)',
@@ -31,7 +30,6 @@ export default function WhyPage() {
           pointerEvents: 'none',
         }} />
 
-        {/* Logo */}
         <div style={{ marginBottom: '20px' }}>
           <svg width="56" height="56" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M26 3C14.402 3 5 12.402 5 24c0 16 21 25 21 25s21-9 21-25C47 12.402 37.598 3 26 3z" fill="#FFFBF5" opacity="0.9"/>
@@ -56,17 +54,16 @@ export default function WhyPage() {
           The problem
         </p>
         <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A0E05', lineHeight: '1.35', marginBottom: '20px' }}>
-          270 km between Delhi and Jaipur. No reliable way to find a clean stop.
+          Millions travel India&apos;s highways every day with no way to plan a clean stop.
         </h2>
         <p style={{ fontSize: '15px', color: '#5C3D1E', lineHeight: '1.8', marginBottom: '16px' }}>
-          India&apos;s national highways carry millions of families every day. Dhaba clusters, toll plazas, petrol stations — washrooms exist. But until you stop and walk in, you don&apos;t know if it&apos;s clean, if there&apos;s running water, or if it&apos;s even safe.
+          Dhaba clusters, toll plazas, petrol stations — washrooms exist on every route. But until you stop and walk in, you have no idea if it&apos;s clean, if there&apos;s running water, or if it&apos;s safe to use.
         </p>
         <p style={{ fontSize: '15px', color: '#5C3D1E', lineHeight: '1.8' }}>
-          For women, the calculation is different. Avoiding a bad stop isn&apos;t just inconvenient — it&apos;s a reason to not travel at all, or to not drink water for hours. That&apos;s the gap SafeStop exists to close.
+          For women, elderly travellers, and families with children, a bad stop isn&apos;t just an inconvenience — it&apos;s a reason to avoid drinking water for hours, or to not travel at all. SafeStop exists to close that gap.
         </p>
       </section>
 
-      {/* ── Divider */}
       <div style={{ height: '1px', background: 'rgba(26,14,5,0.08)', margin: '0 24px' }} />
 
       {/* ── How it works ──────────────────────────────── */}
@@ -75,29 +72,29 @@ export default function WhyPage() {
           How it works
         </p>
         <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A0E05', lineHeight: '1.35', marginBottom: '32px' }}>
-          Built for a 3G signal and a moving vehicle.
+          Built for a moving vehicle on a patchy signal.
         </h2>
 
         {[
           {
             num: '01',
             title: 'WhatsApp the bot',
-            body: 'Message "washrooms near Kotputli" to the SafeStop number. Instant reply with a map link — no app download needed.',
+            body: 'Message "washrooms near [your town]" to the SafeStop number. Instant reply with a map link — no app download, no sign-up.',
           },
           {
             num: '02',
             title: 'Tap the link',
-            body: 'The map opens directly at your location on the route, showing every rated washroom nearby with colour-coded cleanliness.',
+            body: 'The map opens at your location on the route, showing every nearby washroom with colour-coded cleanliness ratings.',
           },
           {
             num: '03',
             title: 'Rate what you find',
-            body: 'Took 30 seconds — three taps to say if it\'s clean, usable, or to avoid. Your rating helps the next traveller immediately.',
+            body: 'Three taps — clean, usable, or avoid. Your rating is live immediately and helps every traveller behind you on that route.',
           },
           {
             num: '04',
             title: 'Add what\'s missing',
-            body: 'Spotted a washroom that isn\'t on the map? Drop a pin, name it, and rate it. It\'s visible to everyone on that route.',
+            body: 'Spotted a washroom not on the map? Drop a pin, name it, rate it. It becomes part of the community data instantly.',
           },
         ].map(({ num, title, body }) => (
           <div key={num} style={{ display: 'flex', gap: '20px', marginBottom: '32px' }}>
@@ -117,24 +114,23 @@ export default function WhyPage() {
         ))}
       </section>
 
-      {/* ── Divider */}
       <div style={{ height: '1px', background: 'rgba(26,14,5,0.08)', margin: '0 24px' }} />
 
       {/* ── Design principles ─────────────────────────── */}
       <section style={{ padding: '52px 24px', maxWidth: '560px', margin: '0 auto' }}>
         <p style={{ fontSize: '12px', fontWeight: '600', color: '#B54400', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '12px' }}>
-          Design principles
+          Built differently
         </p>
         <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A0E05', lineHeight: '1.35', marginBottom: '32px' }}>
-          Every decision was made for the user on the road.
+          Every decision was made for the traveller on the road.
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
           {[
-            { icon: '📶', title: 'Works on slow data', body: 'No images in the critical path. OpenStreetMap tiles load fast on 3G.' },
-            { icon: '📲', title: 'No app download', body: 'A WhatsApp message is the entry point. The web app is the destination.' },
-            { icon: '🤝', title: 'Community first', body: 'Ratings decay without new data. The freshest voices carry the most weight.' },
-            { icon: '🚺', title: 'Menstrual facilities', body: 'A single filter surfaces stops with disposal bins and clean changing space.' },
+            { icon: '📶', title: 'Works on slow data', body: 'No heavy images in the critical path. Loads fast on 3G across any highway.' },
+            { icon: '📲', title: 'No app download', body: 'A WhatsApp message is the entry point. The web app opens in any browser.' },
+            { icon: '🤝', title: 'Community-powered', body: 'Every rating makes the map better for the next person on that route.' },
+            { icon: '🚺', title: 'Menstrual facilities', body: 'One filter to surface stops with disposal bins and clean changing space.' },
           ].map(({ icon, title, body }) => (
             <div key={title} style={{
               background: 'rgba(181,68,0,0.04)',
@@ -150,19 +146,30 @@ export default function WhyPage() {
         </div>
       </section>
 
-      {/* ── Divider */}
       <div style={{ height: '1px', background: 'rgba(26,14,5,0.08)', margin: '0 24px' }} />
 
-      {/* ── The ask ───────────────────────────────────── */}
-      <section style={{ padding: '52px 24px 32px', maxWidth: '560px', margin: '0 auto', textAlign: 'center' }}>
+      {/* ── The vision ────────────────────────────────── */}
+      <section style={{ padding: '52px 24px', maxWidth: '560px', margin: '0 auto' }}>
         <p style={{ fontSize: '12px', fontWeight: '600', color: '#B54400', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '12px' }}>
-          The ask
+          The vision
         </p>
+        <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A0E05', lineHeight: '1.35', marginBottom: '20px' }}>
+          Starting with one highway. Built to cover every route in India.
+        </h2>
+        <p style={{ fontSize: '15px', color: '#5C3D1E', lineHeight: '1.8' }}>
+          SafeStop began on NH48 Delhi–Jaipur as a pilot. The same model — WhatsApp bot, community ratings, open map — works on any highway. As more travellers rate what they find, the map grows. The goal is a single, trusted source for clean stops across India&apos;s national highway network.
+        </p>
+      </section>
+
+      <div style={{ height: '1px', background: 'rgba(26,14,5,0.08)', margin: '0 24px' }} />
+
+      {/* ── CTA ───────────────────────────────────────── */}
+      <section style={{ padding: '52px 24px 32px', maxWidth: '560px', margin: '0 auto', textAlign: 'center' }}>
         <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A0E05', lineHeight: '1.35', marginBottom: '16px' }}>
           Rate one washroom on your next trip.
         </h2>
         <p style={{ fontSize: '15px', color: '#5C3D1E', lineHeight: '1.8', marginBottom: '36px', maxWidth: '360px', margin: '0 auto 36px' }}>
-          SafeStop is only as useful as its latest data. Three taps from you makes the route better for everyone behind you.
+          Three taps from you makes the route better for every traveller behind you.
         </p>
 
         <Link
@@ -194,7 +201,7 @@ export default function WhyPage() {
         marginTop: '48px',
       }}>
         <p style={{ fontSize: '13px', color: '#5C3D1E', opacity: 0.6 }}>
-          SafeStop · NH48 Delhi–Jaipur · Community data
+          SafeStop · Community data · Free to use
         </p>
       </footer>
     </main>
