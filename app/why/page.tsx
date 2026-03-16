@@ -40,10 +40,10 @@ export default function WhyPage() {
         </div>
 
         <h1 style={{ fontSize: '26px', fontWeight: '700', color: '#FFFBF5', lineHeight: '1.3', marginBottom: '10px' }}>
-          62% of travellers just hold it.
+          India builds world-class highways. The washrooms? Still broken.
         </h1>
         <p style={{ fontSize: '14px', color: 'rgba(255,251,245,0.80)', lineHeight: '1.6', maxWidth: '300px', margin: '0 auto' }}>
-          Not because washrooms don&apos;t exist — but because no one knows which ones are safe to use.
+          SafeStop is a free community map so every traveller knows what&apos;s ahead — before they stop.
         </p>
       </section>
 
